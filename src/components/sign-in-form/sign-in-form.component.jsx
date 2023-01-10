@@ -4,7 +4,7 @@ import {
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 
-import Button from "../button/button.component";
+import Button, { BUTTON_TYPES_CLASSES } from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
 import { useState } from "react";
 import "./sign-in-form.styles.scss";
@@ -30,10 +30,7 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      await signInAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
+      await signInAuthUserWithEmailAndPassword(email, password);
       resetFormField();
     } catch (error) {
       switch (error.code) {
@@ -78,7 +75,11 @@ const SignInForm = () => {
       </form>
       <div className="buttons-container">
         <Button onClick={handleSubmit}>Sign In</Button>
-        <Button buttonType="google" onClick={signInWithGoogle}>
+        <Button
+          buttonType={BUTTON_TYPES_CLASSES.google}
+          type="button"
+          onClick={signInWithGoogle}
+        >
           Sign In with Google
         </Button>
       </div>
